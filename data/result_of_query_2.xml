@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Query_5_rooms_with_min_age>
+     <row>
+          <number_of_room>661</number_of_room>
+          <avg_age>12</avg_age>
+     </row>
+     <row>
+          <number_of_room>913</number_of_room>
+          <avg_age>20</avg_age>
+     </row>
+     <row>
+          <number_of_room>111</number_of_room>
+          <avg_age>32</avg_age>
+     </row>
+     <row>
+          <number_of_room>957</number_of_room>
+          <avg_age>33</avg_age>
+     </row>
+     <row>
+          <number_of_room>773</number_of_room>
+          <avg_age>35</avg_age>
+     </row>
+</Query_5_rooms_with_min_age>
