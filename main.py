@@ -1,10 +1,9 @@
 from data_extraction import data_extraction_from_git_hub
 from data_load_from_JSON import data_load
 from data_upload_to_the_database import data_upload
-from queries.query_rooms_and_number_of_students import Query_Rooms_Students
-from queries.query_5_rooms_with_min_age import Query_5_Rooms_min_age
-from queries.query_5_rooms_with_max_age import Query_5_Rooms_max_age
-from queries.query_rooms_with_2_genders import Query_rooms_with_genders
+import queries_text
+from queries_JSON import query_JSON
+from queries_XML import query_XML
 
 
 def main():
@@ -28,21 +27,31 @@ def main():
     # data upload to the database
     data_upload(mySQLServer, myDatabase, rooms_data, students_data)
 
-    # queries
-    doc_type = "json"
+    valid_doc_types = {"json", "xml"}
+    valid_queries = {"query_1", "query_2", "query_3", "query_4"}
 
-    Query_Rooms_Students(
-        mySQLServer, myDatabase, dir_name + f"result_of_query_1.{doc_type}", doc_type
-    )
-    Query_5_Rooms_min_age(
-        mySQLServer, myDatabase, dir_name + f"result_of_query_2.{doc_type}", doc_type
-    )
-    Query_5_Rooms_max_age(
-        mySQLServer, myDatabase, dir_name + f"result_of_query_3.{doc_type}", doc_type
-    )
-    Query_rooms_with_genders(
-        mySQLServer, myDatabase, dir_name + f"result_of_query_4.{doc_type}", doc_type
-    )
+    while (doc_type := input("Enter doc_type ('json' or 'xml') or 'exit': ")) != "exit":
+        if doc_type in valid_doc_types:
+            while (query := input("Enter query_N (1-4) or 'exit': ")) != "exit":
+                if query in valid_queries:
+                    if doc_type == "json":
+                        query_JSON(
+                            mySQLServer,
+                            myDatabase,
+                            dir_name + "result_of_query.json",
+                            queries_text.queries[query],
+                        )
+                    elif doc_type == "xml":
+                        query_XML(
+                            mySQLServer,
+                            myDatabase,
+                            dir_name + "result_of_query.xml",
+                            queries_text.queries[query],
+                        )
+                else:
+                    print("No such query.")
+        else:
+            print("No such doc type.")
 
 
 if __name__ == "__main__":

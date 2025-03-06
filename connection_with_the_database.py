@@ -10,4 +10,4 @@ def SQLconnection(mySQLServer, myDatabase):
             "Trusted_Connection=yes;"
         )
     except Exception as e:
-        print("Connection error")
+        print("Connection error:", e)
